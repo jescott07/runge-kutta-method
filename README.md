@@ -206,5 +206,15 @@ One way to implement this method is through the pseudo code:
 
 There is much more to dicuss about this methods, for forther reading I sugest the chapter 16 of the book Numerical Recipier in F77 from WILLIAM H. PRESS, SAUL A. TEUKOLSKY, WILLIAM T. VETTERLING and BRIAN P. FLANNERY.
 
+## Comparison Between the Convergence of Different Methods
+
+In this section we will analyse the convergence of difent methods, Euler, mid point and Runge-Kutta. For this, is usefull to integrate a diferencial equation with analitical solution.
+
+Consider the folowing diferencial equation:
+
+$\frac{dy}{dx} = \frac{y}{2x} + \frac{x^2}{y}$
+
+Who has the folowing analitical solution:
+
 
 
