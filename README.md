@@ -212,9 +212,16 @@ In this section we will analyse the convergence of difent methods, Euler, mid po
 
 Consider the folowing diferencial equation:
 
+<p align="center">
 $\frac{dy}{dx} = \frac{y}{2x} + \frac{x^2}{y}$
+</p>
 
 Who has the folowing analitical solution:
 
+<p align="center">
+$y(x) = \sqrt{\frac{x^2 + 7x}{2}}$
+</p>
+
+To analyze the convergence of the series I write a program in $\texttt{Fortran 90}$ with three modules, which compute the solution of the diferencial equation above using the three different methods discussed, one for each module (conv directory). 
 
 
