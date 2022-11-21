@@ -222,4 +222,74 @@ Who has the folowing analitical solution:
 $y(x) = \sqrt{\frac{x^2 + 7x}{2}}$
 </p>
 
-To analyze the convergence of the series we write a program in $\texttt{Fortran 90}$ with three modules, which compute the solution of the diferencial equation above using the three different methods discussed, one for each module. We then use $\texttt{f2py}$ from $\texttt{numpy}$ to execute this modules in $\texttt{Pyhon}$, to do this we run the folowing comand on the terminal $\texttt{f2py -c directory/FileName.f90 -m ProgramName}$ we them import the modules of the $\texttt{Fortran}$ program on $\texttt{Pyhon}$. To know more about $\texttt{f2py}$ acess the [user guide](https://numpy.org/doc/stable/f2py/). 
+To analyze the convergence of the series we write a program in $\texttt{Fortran 90}$ with three modules, which compute the solution of the diferencial equation above using the three different methods discussed, one for each module. We then use $\texttt{f2py}$ from $\texttt{numpy}$ to execute this modules in $\texttt{Pyhon}$. Then we write a code in $\texttt{Python}$ that compares the numerical solution to the analytical one for diferent step sizes $h$ and give the error $\epsilon$ for each method for a given $h$.
+
+We see that for the Runge-Kutta method, a $h = 10^{-2}$ generates a error of order $\epsilon \sim 10^{-11}$ to achieve the same error we need a $h \sim 10^{-5}$ for the mid point method and a $h \sim 10^{-8}$ for the Euler method. Notice that if we fix $x_i$ and $x_f$ (wich is the case here) we need more integration steps given a smaller $h$. This analyses show the rebustness of the Runge-Kutta method compared to others methods.
+
+To see in details the codes, please see the README in in the directory called $\texttt{conv}$ in this repository.
+
+## The Lorenz System 
+
+The Lorenz System is a set of three non-liean diferential equations, as shown in the system below:
+
+<p align="center">
+$\frac{dy_1}{dx} = -P(y_1 - y_2)$
+
+$\frac{dy_2}{dx} = -y_2 + r y_1 - y_1 y_3$
+
+$\frac{dy_3}{dx} = -b y_3 + y_1 y_2$
+</p>
+
+Where, $P$, $b$ and $r$ are parameters of this system. This model was first introduced in the study of convection in the atmosphere and it was a breaking point in the chaos studies in deterministic dynamical systems. If we fix $P$ and $b$ the system will be determines the character of the solution.
+
+For $y_1 = y_2 = \pm \sqrt{r-1}$, $y_3 = r-1$ and seting $P=3$ and $b=1$ we have:
+
+<p align="center">
+$\frac{dy_1}{dx} = - 3(\sqrt{r-1} - \sqrt{r-1})$,
+
+$\frac{dy_2}{dx} = -\sqrt{r-1} + r\sqrt{r-1} - \sqrt{r-1} (r-1)$,
+
+$\frac{dy_3}{dx} = -(r-1) + \sqrt{r-1} \sqrt{r-1}$.
+</p>
+
+Thus, for this condition we have the stationary solution, i.e.
+
+<p align="center">
+$\frac{dy_1}{dx} = 0$,
+
+$\frac{dy_2}{dx} = 0$,
+
+$\frac{dy_3}{dx} = 0$.
+</p>
+
+Using the theory of linear stability, this solution can be shown to be stable for:
+
+<p align="center">
+$r < r_c = \frac{P(P+b+3)}{P-b-1}$,
+</p>
+
+for $P=3$ and $b=-1$, $r_c = 21$ what gives the limite of stability for this parameters. 
+
+To solve the system of differential equations given by the Lorenz system, we write a module in $\texttt{Fortran 90}$, using the Runge-Kutta method and execute it in $\texttt{Python} as explained in the section above. In order to analyze the convergence of the solutions, we fixed $P = 3$, $b = 1$ and plotted the trajectory in the $y_1 \times y_2$ plane for two different values of $r$, $r = 10$ and $r = 30$ ( as show in the figures below). The initial conditions was set as:
+
+<p align="center">
+$y_1(0) = 0$,
+$y_2(0) = 1$,
+$y_3(0) = 0$,
+</p>
+
+The conditions for the integration was $x_i = 0$, $x_f = 100$ and $h = 10^{-4}$.
+
+To see in details how the programs was constructed, please see the README on the $\texttt{lorenz_system}$ directory in this repository.
+
+## The Duffing Oscillator
+
+The Duffing Oscillator represents a non-harmonic oscillator, their equation of motion is given by:
+
+<p align="center">
+$\ddot y + \alpha y + \beta y^3 = 0$,
+</p>
+
+where $\ddot y$ represents the second derivative of y.
+
+<!--To analyze the convergence of the series we write a program in $\texttt{Fortran 90}$ with three modules, which compute the solution of the diferencial equation above using the three different methods discussed, one for each module. We then use $\texttt{f2py}$ from $\texttt{numpy}$ to execute this modules in $\texttt{Pyhon}$, to do this we run the folowing comand on the terminal $\texttt{f2py -c directory/FileName.f90 -m ProgramName}$ we them import the modules of the $\texttt{Fortran}$ program on $\texttt{Pyhon}$. To know more about $\texttt{f2py}$ acess the [user guide](https://numpy.org/doc/stable/f2py/).-->
