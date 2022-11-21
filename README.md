@@ -234,9 +234,13 @@ The Lorenz System is a set of three non-liean diferential equations, as shown in
 
 <p align="center">
 $\frac{dy_1}{dx} = -P(y_1 - y_2)$
-
+</p>
+      
+<p align="center">
 $\frac{dy_2}{dx} = -y_2 + r y_1 - y_1 y_3$
-
+</p>
+      
+<p align="center">
 $\frac{dy_3}{dx} = -b y_3 + y_1 y_2$
 </p>
 
@@ -246,9 +250,13 @@ For $y_1 = y_2 = \pm \sqrt{r-1}$, $y_3 = r-1$ and seting $P=3$ and $b=1$ we have
 
 <p align="center">
 $\frac{dy_1}{dx} = - 3(\sqrt{r-1} - \sqrt{r-1})$,
-
+</p>
+      
+<p align="center">
 $\frac{dy_2}{dx} = -\sqrt{r-1} + r\sqrt{r-1} - \sqrt{r-1} (r-1)$,
-
+</p>
+      
+<p align="center">
 $\frac{dy_3}{dx} = -(r-1) + \sqrt{r-1} \sqrt{r-1}$.
 </p>
 
@@ -256,9 +264,13 @@ Thus, for this condition we have the stationary solution, i.e.
 
 <p align="center">
 $\frac{dy_1}{dx} = 0$,
-
+</p>
+      
+<p align="center">
 $\frac{dy_2}{dx} = 0$,
-
+</p>
+      
+<p align="center">
 $\frac{dy_3}{dx} = 0$.
 </p>
 
@@ -270,17 +282,28 @@ $r < r_c = \frac{P(P+b+3)}{P-b-1}$,
 
 for $P=3$ and $b=-1$, $r_c = 21$ what gives the limite of stability for this parameters. 
 
-To solve the system of differential equations given by the Lorenz system, we write a module in $\texttt{Fortran 90}$, using the Runge-Kutta method and execute it in $\texttt{Python} as explained in the section above. In order to analyze the convergence of the solutions, we fixed $P = 3$, $b = 1$ and plotted the trajectory in the $y_1 \times y_2$ plane for two different values of $r$, $r = 10$ and $r = 30$ ( as show in the figures below). The initial conditions was set as:
+To solve the system of differential equations given by the Lorenz system, we write a module in $\texttt{Fortran 90}$, using the Runge-Kutta method and execute it in $\texttt{Python}$ as explained in the section above. In order to analyze the convergence of the solutions, we fixed $P = 3$, $b = 1$ and plotted the trajectory in the $y_1 \times y_2$ plane for two different values of $r$, $r = 10$ and $r = 30$ ( as show in the figures below). The initial conditions was set as:
 
 <p align="center">
 $y_1(0) = 0$,
+</p>
+
+<p align="center">
 $y_2(0) = 1$,
+</p>
+
+<p align="center">
 $y_3(0) = 0$,
 </p>
 
 The conditions for the integration was $x_i = 0$, $x_f = 100$ and $h = 10^{-4}$.
 
-To see in details how the programs was constructed, please see the README on the $\texttt{lorenz_system}$ directory in this repository.
+To see in details how the programs was constructed, please see the README on the lorenz_system directory in this repository.
+
+![](/../main/lorenz_system/ls_1.png)
+
+
+![](/../main/lorenz_system/ls_2.png)
 
 ## The Duffing Oscillator
 
@@ -290,6 +313,48 @@ The Duffing Oscillator represents a non-harmonic oscillator, their equation of m
 $\ddot y + \alpha y + \beta y^3 = 0$,
 </p>
 
-where $\ddot y$ represents the second derivative of y.
+where $\ddot y$ represents the second derivative of y and $\alpha$ and $\beta$ are parameters to be analysed, where $\alpha > 0$.
+
+To solve this differencial equation we write a program in $\texttt{Fortran 90}$ and execute their modules (which use the Runge-Kutta method) in $\texttt{Python}$, to more details see the README in duffing_oscilator folder in this repository.
+
+### Analysing the orbits with different parameters
+
+To analysing the orbits in the plane $y \times \dot y$ we define the inicial conditions $\dot y (0) = 0$, $y(0) = 2$ and fixed $\alpha = 1$ varying $\beta$ = 1/10, 1/5, 1/2 and 0. Thus we executed the module for this conditions, and ploted the results, as show in the figure below.
+
+![](/../main/duffing_oscillator/do_1.png)
+
+We can see that for every $\beta$ the system is conservative, i.e form a closed orbit, as we expected. Their shape goes to a elliptical one as $\beta \rightarrow 0$, that makes sense since in a harmonic oscillator we expect a elliptical orbit, so we can think the $\beta$ as a "non-harmonicity" parameter.
+
+### Period $\times$ Amplitude
+
+To investigate how the period (P) changes with the amplitude (A) we define the inicial parameters as before but with $\alpha = (2\pi)^2$ and $\beta$ varying from 0 to 0.5 in 5 steps. We then execute the module for 100 periods and calculate the amplitude for each one, we did this for each $\beta$ and ploted the results, as show in the figure below.
+
+![](/../main/duffing_oscillator/do_2.png)
+
+We can see that, for every $\beta$, P goes to $(2\pi)^2$ for $A \rightarrow 0$, now, for $\beta = 0$ P is constante as we expected since in this case we have a harmonic oscillator. But, for $\beta > 0$ A decays with P and this decay is greater for higher values of $\beta$.
+
+### Damped Duffing Oscillator
+
+In a damped duffing oscillator, the system is subjected to a periodic external force, that is, the equation is given by:
+
+<p align="center">
+$\ddot y + \kappa \dot y + \alpha y + \beta y^3 = f \cos{\omega t}$,
+</p>
+
+Solving this differencial equation is equivalent to solve the folowing sistem of equations:
+
+<p align="center">
+$u = \dot y$
+</p>
+
+<p align="center">
+$\dot u = - \alpha y - \beta y^3 - \kappa u - f \cos{\omega t}$,
+</p>
+
+To investigate how A changes with $\omega$, as did before, we execute the module (different from the used above, see the README in duffing_oscillator folder) for 1000 values of $\omega$ varying from 1/3 to 3 and fixing the other parameters, $\alpha = 1$, $\beta = 0.1$, $\kappa = 0.05$ and $f=0.02$. We did this for two diferent inicial conditions a) $y(0) = 0$ and $\dot y (0) =0$ b) $y(0) = 5$ and $\dot y (0) = 0$. The figure below show the comparasion betewn $A \times \omega$
+
+![](/../main/duffing_oscillator/do_3.png)
+
+From this figure we can see that in principle A changes with $\omega$ regardless of initial conditions, but there is a point where A it's maximum in some $\omega$,that is, at the resonant frequency of the system ($\omega_r$). We can see also that $\omega_f$ depends of the inicial conditions and in both cases A quickly decays for $\omega > \omega_r$. To read more about the Duffing equation [see](https://en.wikipedia.org/wiki/Duffing_equation) mainly about hysteresis that was not fuly investigated in this work.
 
 <!--To analyze the convergence of the series we write a program in $\texttt{Fortran 90}$ with three modules, which compute the solution of the diferencial equation above using the three different methods discussed, one for each module. We then use $\texttt{f2py}$ from $\texttt{numpy}$ to execute this modules in $\texttt{Pyhon}$, to do this we run the folowing comand on the terminal $\texttt{f2py -c directory/FileName.f90 -m ProgramName}$ we them import the modules of the $\texttt{Fortran}$ program on $\texttt{Pyhon}$. To know more about $\texttt{f2py}$ acess the [user guide](https://numpy.org/doc/stable/f2py/).-->
