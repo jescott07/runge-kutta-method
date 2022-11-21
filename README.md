@@ -223,5 +223,3 @@ $y(x) = \sqrt{\frac{x^2 + 7x}{2}}$
 </p>
 
 To analyze the convergence of the series we write a program in $\texttt{Fortran 90}$ with three modules, which compute the solution of the diferencial equation above using the three different methods discussed, one for each module. We then use $\texttt{f2py}$ from $\texttt{numpy}$ to execute this modules in $\texttt{Pyhon}$, to do this we run the folowing comand on the terminal $\texttt{f2py -c directory/FileName.f90 -m ProgramName}$ we them import the modules of the $\texttt{Fortran}$ program on $\texttt{Pyhon}$. To know more about $\texttt{f2py}$ acess the [user guide](https://numpy.org/doc/stable/f2py/). 
-
-
