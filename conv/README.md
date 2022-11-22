@@ -227,7 +227,7 @@ end subroutine it
 As discussed above, we need to run the program using f2py to create an extension module:
 
 ```
-$ f2py -c ex2.f90 -m ex2
+$ f2py -c src/ex2.f90 -m ex2
 ```
 
 We then import the modules from the extension module created along with some useful libraries:
