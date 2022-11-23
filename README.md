@@ -10,7 +10,7 @@ In a simple equation we have an equality that relates one variable to others. Fo
 $z=x^2+y$,
 </p>
 
-that can be represented as a function of $x$ and $y$
+can be represented as a function of $x$ and $y$
 
 <p align="center">
 $f(x,y) = x^2 + y$.
