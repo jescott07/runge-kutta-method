@@ -41,9 +41,9 @@ real(8), dimension(N) :: x,yy,u
 real(8), dimension(N,2) :: y ! Here y(1) = y e y(2) = dy/dx
 ```
 
-Here, N is the number of steps, $a = \alpha$, $b = \beta$, yi is the initial condition of $y$, ui is the initial condition of $u=\dot y$  and h is the step size. y is a matrix of $N \times 2$ which contains the solution of the system in each step, yy = y(:,1), i.e. the first column of the system, u = y(:,2) i.e. the second column of the system and x is the variable of integration, remembering that $\dot y =\frac{dy}{dx}$, which is computed at each step this is why it is a vector with size N.
+Here, N is the number of steps, $a = \alpha$, $b = \beta$, yi is the initial condition of $y$, ui is the initial condition of $u=\dot y$  and h is the step size. y is a matrix of $N \times 2$ which contains the solution of the system in each step, yy = y(:,1), i.e. the first column of the system, u = y(:,2) i.e. the second column of the system and x is the variable of integration, remembering that $\dot y =\frac{dy}{dx}$, which is computed at each step, this is why it is a vector with size N.
 
-So we compute the solutions through the rk4 () subroutine:
+So we compute the solutions through the rk4() subroutine:
 
 ```fortran
 subroutine rk4()
@@ -188,7 +188,7 @@ def ex4a(arg1):
     return y,u
 ```
 
-To investigate the relation between amplitude (A) and period (P) for different values of $\beta$, we will build a function that defines the variables (letting $\beta as an argument) as we did before, however it varies yi from 0 to 100 and 100 points and compute A and P for each one:
+To investigate the relation between the amplitude (A) and period (P) for different values of $\beta$, we will build a function that defines the variables (letting $\beta$ as an argument) as we did before, however it varies yi from 0 to 100 in 100 points and compute A and P for each one:
 
 
 ```python3
