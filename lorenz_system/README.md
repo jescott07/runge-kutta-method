@@ -1,6 +1,6 @@
 # The Lorenz System
 
-To solve the Lorenz system presented in the main [README](.. /.. /main/README. md) we will use the Runge-Kutta method to solve the system of differential equations. To do so, we will build a module in Fortran which computes the solutions through this method, and then run it in Python to analyse the results. The implementation of this method and how we can run a Fortran module in Python was discussed before (please read this [README](.. /.. /conv/README. md).
+To solve the Lorenz system presented in the main [README](../../main/README.md) we will use the Runge-Kutta method to solve an system of differential equations. To do so, we will build a module in Fortran which computes the solutions through this method, and then run it in Python to analyse the results. The implementation of this method and how we can run a Fortran module in Python was discussed before, to know more read this [README](../../main/conv/README.md).
 
 ## Build the Fortran Module
 
@@ -18,7 +18,7 @@ real(8), dimension(N,3) :: x
 real(8) :: Tf, r
 ```
 
-Here we defined the parameters P=3 e b=1 (which are parameters of the equation) and N, which are the number of iterations. Also, we defined a matrix $N \times 3$ that will contain the solutions for each step, remember that $\vec{x} = x_1 \hat{i} + x_2 \hat{j} + x_3 \hat{k}$. Notice that we did a change of variables $y \rightarrow x$ and $x here. Finally, we define the end time (Tf) and r which is a parameter in the equations (that we want to analyse).
+Here we defined the parameters P=3 and b=1 (which are parameters of the equation) and N, which are the number of iterations. Also, we defined a matrix $N \times 3$ that will contain the solutions for each step, remember that $\vec{x} = x_1 \hat{i} + x_2 \hat{j} + x_3 \hat{k}$. Notice that we did a change of variables $y \rightarrow x$ and $x \rightarrow t$ here. Finally, we define the end time (Tf) and r which is a parameter in the equations (that we want to analyse).
 
 
 And then we build a subfunction to run the Runge-Kutta method.
@@ -47,11 +47,6 @@ subroutine rk4()
         x(i+1,:) = x(i,:) + (k1 + 2.0*k2 + 2.0*k3 + k4)/6
         t(i+1) = t(i) + dt
     enddo    
-
-    x1 = x(:,1)
-    x2 = x(:,2)
-    x3 = x(:,3)
-
 end subroutine rk4
 
 function f(v)
