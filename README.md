@@ -1,4 +1,4 @@
-# Computacional Methods to Solve Differential Equations
+# Computacional Methods For Solving Differential Equations
 
 In this repository we will show how to use different methods to solve differential equations. In the introduction, we will discuss about differential equations and how we can use different methods to solve them. In a second section we show the convergence of different methods and discuss which is more efficient. In the third section we will study the Lorenz System and in the last sections we will discuss about the duffing oscillator.
 
