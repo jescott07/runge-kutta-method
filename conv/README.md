@@ -1,6 +1,6 @@
 # Comparison Between the Convergence of Different Methods
 
-As discussed in the main [README](.. /.. /main/README. md) in this example we want to compare the three methods presented before: Euler; Mid-point and Runge-Kutta methods. Thus, we will write a program in Fortran with three modules, each one for different methods, we then will run this module in python using f2py. In this README, we will discuss in details how the program was built, but it's important to know more about f2py before.
+As discussed in the main [README](../../main/README.md) in this example we want to compare the three methods presented before: Euler; Mid-point and Runge-Kutta methods. For that, we will write a program in Fortran with three modules, each one for different methods, we then will run this module in python using f2py. In this README, we will discuss in details how the program was built, but it's important to know more about f2py before.
 
 ## f2py
 
@@ -18,7 +18,7 @@ The statements in a module are accessible (modifiable) through python, but the s
 
 ```fortran
 module sum_x     
-   implicit none ! this is inportant to deactivate the defoult statement declarations
+   implicit none ! this is important to deactivate the default statement declarations
    integer :: n ! declares n as an integer
    real(8) :: x ! declares x as an double-width real number 
    contains
@@ -32,7 +32,7 @@ module sum_x
 end module
 ```
 
-Then and x statements are modifiable, but we can not modify j for example, this is why we need to declare the j value in the subroutine.
+Then n and x statements are modifiable, but we can not modify j for example, this is why we need to declare the j value in the subroutine.
 
 The quick way to wrap this module using f2py is:
 
@@ -64,7 +64,7 @@ The inspection gives us the information about the module
 
 So the inspection shows us that this module contains an integer named n (n: 'I'-scalar), a double-width real number named x (x: 'd'-scalar) and a subroutine named sum(). As we don't declare the value of n and x they are defined as 0.
 
-Now we can declare the values of x and n as we want.
+Now we can declare the values of x and n as we want. For example
 
 ```python3
     sum_x.n = 10
@@ -112,7 +112,7 @@ Which  returns
 ╰────────────────────────────╯
 ```
 
-As as we expected, that is the subroutine added j (j=1) n times to x.
+As as we expected, that is, the subroutine added j (j=1) n times to x.
 
 We just scratched the surface of what f2py can do, to know more access the f2py [user manual](https://numpy.org/doc/stable/f2py/).
 
@@ -142,7 +142,7 @@ end module
 
 Note that at first we don't know the dimension of the vectors x and y, so they were declared as allocatable (this tool are not available in Fortran 77), this means that we will allocate them later, once we had declare the values of xi, xf and h. 
 
-The subroutine that computes the solution are different, as we discussed in the main [README](.. /.. /main/README. md). For the Euler method we have:
+The subroutine that computes the solution are different, as we discussed in the main [README](../../main/README.md). For the Euler method we have:
 
 ```fortran
 subroutine it()
