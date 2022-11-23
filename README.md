@@ -278,7 +278,7 @@ $r < r_c = \frac{P(P+b+3)}{P-b-1}$,
 
 for $P=3$ and $b=-1$, $r_c = 21$ what gives the limit of stability for this parameters. 
 
-To solve the system of differential equations given by the Lorenz system, we write a module in $\texttt{Fortran 90} $, using the Runge-Kutta method and execute it in $\texttt{Python}$ as explained in the section above. In order to analyze the convergence of the solutions, we fixed $P = 3$, $b = 1$ and plotted the trajectory in the $y_1 \times y_2$ plane for two different values of $r$, $r = 10$ and $r = 30$ (as show in the figures below). The initial conditions were set as:
+To solve the system of differential equations given by the Lorenz system, we write a module in $\texttt{Fortran 90} $, using the Runge-Kutta method and execute it in $\texttt{Python}$ as explained in the section above. In order to analyze the convergence of the solutions, we fixed $P = 3$, $b = 1$ and plotted the solution for two different values of $r$, $r = 10$ and $r = 30$ (as show in the figures below). The initial conditions were set as:
 
 <p align="center">
 $y_1(0) = 0$,
