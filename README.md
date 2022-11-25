@@ -140,7 +140,7 @@ One way to implement this method is through the pseudo code:
 
 ### The Runge-Kutta Method
 
-As the content presented above suggests, higher expansion will lead to minor errors, in fact an n order power series expansion leads to $\mathcal{O}(h^{n+1})$ error. There is many ways that we can evaluate $f(x, y)$, the fourth-order Runge-Kutta Method (or simply Runge-Kutta method) evaluate the derivative four times in each step: One in $y_n$, one in $y_ {n+1}$ and twice in the midpoint. The solution is computed as follows:
+As the content presented above suggests, higher expansion will lead to minor errors, in fact an $n$ order power series expansion leads to $\mathcal{O}(h^{n+1})$ error. There is many ways that we can evaluate $f(x, y)$, the fourth-order Runge-Kutta Method (or simply Runge-Kutta method) evaluate the derivative four times in each step: One in $y_n$, one in $y_ {n+1}$ and twice in the midpoint. The solution is computed as follows:
 
 <p align="center">
 $y_{n+1} = y_n + \frac{k_1}{6} + \frac{k_2}{3} + \frac{k_3}{3} + \frac{k_4}{6} + \mathcal{O}(h^5)$
